@@ -442,26 +442,7 @@
             $(".playPpt").hide();
             swfobject.embedSWF(videourl, "swfzone", "685", "528", "9.0.0", "", {}, { allowfullscreen: "true", wmode: "opaque" });
         });
-        $(".works-manage-report").on("click", function () {
-            var title = $(this).attr("title");
-            var fnumber = $("#fnum").val();
-            var errurl=$("#errUrl").val();
-            var data=title == "举报"?{"id":18,"fnumber":fnumber,"errurl":errurl}:{"id":215,"fnumber":fnumber,"errurl":errurl,"cate":1};
-            var url=title == "举报"?("http://seek.nipic.com/report/index?id=18&fnumber="+fnumber+"&errurl="+ errurl):("http://seek.nipic.com/report/index?id=215&fnumber="+fnumber+"&errurl="+ errurl +"&cate=1");
-            var locationUrl = window.location.href;
-            $.ajax({
-                type: "GET",
-                url: getAppHost().www + "/ReportAjax/GetBbsCount",
-                data: data,
-                dataType: "json",
-                success: function (r) {     
-                    var code = r.code, mes = r.mes;
-                    if (code == "2000") {
-                        window.open(url);
-                    }else if(code == "4000"){
-                        location.href="http://login.nipic.com/?backurl=" + locationUrl;
-                    }else {
-                        Widget.showErrorTip(mes);
+        
                     }
                 },
                 error: function () {
